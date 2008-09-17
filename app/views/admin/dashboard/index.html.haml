@@ -1,8 +1,8 @@
 - render_region :main do |main|
   - main.header do
     %h1= "#{Radiant::Config['admin.title']} Recent Activity"
-  - unless @updated_pages.blank?
-    - main.updated_pages do
+  - main.updated_pages do
+    - unless @updated_pages.blank?
       #updated_pages.recent_box
         %h2 Recently Updated Pages
         %ul
@@ -10,8 +10,8 @@
             %li
               %span= link_to page.title, page.url
               = "Updated by #{(page.updated_by || page.created_by).name} #{time_ago_in_words page.updated_at.to_time} ago."
-  - unless @updated_snippets.blank?
-    - main.updated_snippets do
+  - main.updated_snippets do
+    - unless @updated_snippets.blank?
       #updated_snippets.recent_box
         %h2 Recently Update Snippets
         %ul
@@ -19,5 +19,6 @@
             %li
               %span= link_to snippet.name, snippet_edit_url(snippet)
               = "Updated by #{(snippet.updated_by || snippet.created_by).name} #{time_ago_in_words snippet.updated_at.to_time} ago."
+= render_region :extensions
         
 - include_stylesheet 'admin/dashboard'
