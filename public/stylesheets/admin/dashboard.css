@@ -1,0 +1,25 @@
+.recent_box {
+	float: left;
+	margin-bottom: 20px;
+	width: 450px;
+}
+	.recent_box h2 {
+		background: #ccc;
+		color: #000;
+		font-size: 1.2em;
+		font-weight: normal;
+		margin: 0;
+		padding: 5px;
+	}
+	.recent_box ul, .recent_box ul li{
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+		.recent_box ul li {
+			padding: 5px;
+			border-bottom: 1px solid #ddd;
+		}
+		.recent_box ul li span {
+			display: block;
+		}
