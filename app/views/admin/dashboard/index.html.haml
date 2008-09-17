@@ -18,7 +18,10 @@
           - @updated_snippets.each do |snippet|
             %li
               %span= link_to snippet.name, snippet_edit_url(snippet)
-              = "Updated by #{(snippet.updated_by || snippet.created_by).name} #{time_ago_in_words snippet.updated_at.to_time} ago."
+              - updater = snippet.updated_by || snippet.created_by
+              - updater_name = updater.name if updater
+              - updater_name = "System" unless updater
+              = "Updated by #{updater_name} #{time_ago_in_words snippet.updated_at.to_time} ago."
 = render_region :extensions
         
 - include_stylesheet 'admin/dashboard'
