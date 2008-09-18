@@ -1,6 +1,30 @@
 - render_region :main do |main|
   - main.header do
     %h1= "#{Radiant::Config['admin.title']} Recent Activity"
+  - main.draft_pages do
+    - unless @draft_pages.blank?
+      #draft_pages.recent_box
+        %h2 Draft Pages
+        %ul
+          - @draft_pages.each do |page|
+            %li
+              %span= link_to page.title, page.url
+              - updater = page.updated_by || page.created_by
+              - updater_name = updater.name if updater
+              - updater_name = "System" unless updater
+              = "Updated by #{updater_name} #{time_ago_in_words page.updated_at.to_time} ago."
+  - main.reviewed_pages do
+    - unless @reviewed_pages.blank?
+      #reviewed_pages.recent_box
+        %h2 Recently Reviewed Pages
+        %ul
+          - @reviewed_pages.each do |page|
+            %li
+              %span= link_to page.title, page.url
+              - updater = page.updated_by || page.created_by
+              - updater_name = updater.name if updater
+              - updater_name = "System" unless updater
+              = "Updated by #{updater_name} #{time_ago_in_words page.updated_at.to_time} ago."
   - main.updated_pages do
     - unless @updated_pages.blank?
       #updated_pages.recent_box

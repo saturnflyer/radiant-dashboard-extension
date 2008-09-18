@@ -27,7 +27,7 @@ class DashboardExtension < Radiant::Extension
   def load_default_dashboard_regions
     returning OpenStruct.new do |dashboard|
       dashboard.index = Radiant::AdminUI::RegionSet.new do |index|
-        index.main.concat %w{header updated_pages updated_snippets}
+        index.main.concat %w{header draft_pages reviewed_pages updated_pages updated_snippets}
         index.extensions.concat %w{}
       end
     end
