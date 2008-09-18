@@ -1,6 +1,6 @@
 .recent_box {
 	float: left;
-	margin-bottom: 20px;
+	margin: 0 10px 20px 0;
 	width: 450px;
 }
 	.recent_box h2 {
@@ -11,6 +11,9 @@
 		margin: 0;
 		padding: 5px;
 	}
+	.recent_box p {
+		margin: 5px;
+	}
 	.recent_box ul, .recent_box ul li{
 		padding: 0;
 		margin: 0;
@@ -20,6 +23,12 @@
 			padding: 5px;
 			border-bottom: 1px solid #ddd;
 		}
+		.recent_box ul li.alternate {
+			color: #666;
+		}
+			.recent_box ul li.alternate a {
+				color: #555;
+			}
 		.recent_box ul li span {
 			display: block;
 		}
