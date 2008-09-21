@@ -1,9 +1,9 @@
-.recent_box {
+.dashboard_module {
 	float: left;
 	margin: 0 10px 20px 0;
 	width: 450px;
 }
-	.recent_box h2 {
+	.dashboard_module h2 {
 		background: #ccc;
 		color: #000;
 		font-size: 1.2em;
@@ -11,24 +11,24 @@
 		margin: 0;
 		padding: 5px;
 	}
-	.recent_box p {
+	.dashboard_module p {
 		margin: 5px;
 	}
-	.recent_box ul, .recent_box ul li{
+	.dashboard_module ul, .dashboard_module ul li{
 		padding: 0;
 		margin: 0;
 		list-style: none;
 	}
-		.recent_box ul li {
+		.dashboard_module ul li {
 			padding: 5px;
 			border-bottom: 1px solid #ddd;
 		}
-		.recent_box ul li.alternate {
+		.dashboard_module ul li.alternate {
 			color: #666;
 		}
-			.recent_box ul li.alternate a {
+			.dashboard_module ul li.alternate a {
 				color: #555;
 			}
-		.recent_box ul li span {
+		.dashboard_module ul li span {
 			display: block;
 		}

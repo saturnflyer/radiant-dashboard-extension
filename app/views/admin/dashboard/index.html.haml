@@ -3,52 +3,40 @@
     %h1= "#{Radiant::Config['admin.title']} Recent Activity"
   - main.draft_pages do
     - unless @draft_pages.blank?
-      #draft_pages.recent_box
+      #draft_pages.recent_box.dashboard_module
         %h2 Draft Pages
         %ul
           - @draft_pages.each do |page|
             %li
               %span= link_to page.title, page.url
-              - updater = page.updated_by || page.created_by
-              - updater_name = updater.name if updater
-              - updater_name = "System" unless updater
-              = "Updated by #{updater_name} #{time_ago_in_words page.updated_at.to_time} ago."
+              = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
   - main.reviewed_pages do
     - unless @reviewed_pages.blank?
-      #reviewed_pages.recent_box
+      #reviewed_pages.recent_box.dashboard_module
         %h2 Recently Reviewed Pages
         %ul
           - @reviewed_pages.each do |page|
             %li
               %span= link_to page.title, page.url
-              - updater = page.updated_by || page.created_by
-              - updater_name = updater.name if updater
-              - updater_name = "System" unless updater
-              = "Updated by #{updater_name} #{time_ago_in_words page.updated_at.to_time} ago."
+              = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
   - main.updated_pages do
     - unless @updated_pages.blank?
-      #updated_pages.recent_box
+      #updated_pages.recent_box.dashboard_module
         %h2 Recently Updated Pages
         %ul
           - @updated_pages.each do |page|
             %li
               %span= link_to page.title, page.url
-              - updater = page.updated_by || page.created_by
-              - updater_name = updater.name if updater
-              - updater_name = "System" unless updater
-              = "Updated by #{updater_name} #{time_ago_in_words page.updated_at.to_time} ago."
+              = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
   - main.updated_snippets do
     - unless @updated_snippets.blank?
-      #updated_snippets.recent_box
+      #updated_snippets.recent_box.dashboard_module
         %h2 Recently Update Snippets
         %ul
           - @updated_snippets.each do |snippet|
             %li
               %span= link_to snippet.name, snippet_edit_url(snippet)
-              - updater = snippet.updated_by || snippet.created_by
-              - updater_name = updater.name if updater
-              - updater_name = "System" unless updater
-              = "Updated by #{updater_name} #{time_ago_in_words snippet.updated_at.to_time} ago."
+              = "Updated by #{updater_name_for(snippet)} #{time_ago_in_words snippet.updated_at.to_time} ago."
 = render_region :extensions
         
 - include_stylesheet 'admin/dashboard'
