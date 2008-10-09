@@ -10,6 +10,7 @@
             %li
               %span= link_to page.title, page.url
               = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
+              = link_to "Edit", page_edit_path(page)
   - main.reviewed_pages do
     - unless @reviewed_pages.blank?
       #reviewed_pages.recent_box.dashboard_module
@@ -19,6 +20,7 @@
             %li
               %span= link_to page.title, page.url
               = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
+              = link_to "Edit", page_edit_path(page)
   - main.updated_pages do
     - unless @updated_pages.blank?
       #updated_pages.recent_box.dashboard_module
@@ -28,6 +30,7 @@
             %li
               %span= link_to page.title, page.url
               = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
+              = link_to "Edit", page_edit_path(page)
   - main.updated_snippets do
     - unless @updated_snippets.blank?
       #updated_snippets.recent_box.dashboard_module
@@ -37,6 +40,7 @@
             %li
               %span= link_to snippet.name, snippet_edit_url(snippet)
               = "Updated by #{updater_name_for(snippet)} #{time_ago_in_words snippet.updated_at.to_time} ago."
+              = link_to "Edit", page_edit_path(page)
 = render_region :extensions
         
 - include_stylesheet 'admin/dashboard'
