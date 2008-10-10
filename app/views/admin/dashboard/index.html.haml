@@ -47,7 +47,7 @@
               %span.title= link_to snippet.name, snippet_edit_url(snippet)
               %span.details
                 = "Updated by #{updater_name_for(snippet)} #{time_ago_in_words snippet.updated_at.to_time} ago."
-                = link_to "Edit", page_edit_path(page)
+                = link_to "Edit", snippet_edit_path(snippet)
 = render_region :extensions
         
 - include_stylesheet 'admin/dashboard'
