@@ -30,7 +30,7 @@
         %ul
           - @updated_pages.each do |page|
             %li
-              - if page.virtual?
+              - if page.virtual? or !page.published?
                 %span.virtual.title= page.title
               - else
                 %span.title= link_to page.title, page.url
