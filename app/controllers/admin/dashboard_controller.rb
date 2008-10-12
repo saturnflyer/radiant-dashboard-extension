@@ -12,5 +12,6 @@ class Admin::DashboardController < ApplicationController
     @reviewed_pages = Page.find(:all, 
       :conditions => ["status_id = :status_id and updated_at > :updated_at",
         {:status_id => Status['Reviewed'].id, :updated_at => recent_range}], :limit => 10)
+    @updated_layouts = Layout.find(:all, recent_conditions)
   end
 end

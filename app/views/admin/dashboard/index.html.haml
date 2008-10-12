@@ -3,7 +3,7 @@
     %h1= "#{Radiant::Config['admin.title']} Dashboard"
   - main.draft_pages do
     - unless @draft_pages.blank?
-      #draft_pages.recent_box.dashboard_module
+      #draft_pages.dashboard_module
         %h2 Draft Pages
         %ul
           - @draft_pages.each do |page|
@@ -14,7 +14,7 @@
                 = link_to "Edit", page_edit_path(page)
   - main.reviewed_pages do
     - unless @reviewed_pages.blank?
-      #reviewed_pages.recent_box.dashboard_module
+      #reviewed_pages.dashboard_module
         %h2 Recently Reviewed Pages
         %ul
           - @reviewed_pages.each do |page|
@@ -25,7 +25,7 @@
                 = link_to "Edit", page_edit_path(page)
   - main.updated_pages do
     - unless @updated_pages.blank?
-      #updated_pages.recent_box.dashboard_module
+      #updated_pages.dashboard_module
         %h2 Recently Updated Pages
         %ul
           - @updated_pages.each do |page|
@@ -39,15 +39,26 @@
                 = link_to "Edit", page_edit_path(page)
   - main.updated_snippets do
     - unless @updated_snippets.blank?
-      #updated_snippets.recent_box.dashboard_module
-        %h2 Recently Update Snippets
+      #updated_snippets.dashboard_module
+        %h2 Recently Updated Snippets
         %ul
           - @updated_snippets.each do |snippet|
             %li
-              %span.title= link_to snippet.name, snippet_edit_url(snippet)
+              %span.title= snippet.name
               %span.details
                 = "Updated by #{updater_name_for(snippet)} #{time_ago_in_words snippet.updated_at.to_time} ago."
                 = link_to "Edit", snippet_edit_path(snippet)
+  - main.updated_layouts do
+    - if (developer? or admin?) and !@updated_layouts.blank?
+      #updated_layouts.dashboard_module
+        %h2 Recently Updated Layouts
+        %ul
+          - @updated_layouts.each do |layout|
+            %li
+              %span.title= layout.name
+              %span.details
+                = "Updated by #{updater_name_for(layout)} #{time_ago_in_words layout.updated_at.to_time} ago."
+                = link_to "Edit", layout_edit_path(layout)
 = render_region :extensions
         
 - include_stylesheet 'admin/dashboard'
