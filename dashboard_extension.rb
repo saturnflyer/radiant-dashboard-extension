@@ -3,7 +3,7 @@
 
 class DashboardExtension < Radiant::Extension
   version "1.0"
-  description "Dashboard provides a way to view recent activity in Radiant."
+  description "Dashboard provides a way to view recent activity in Radiant and gives small extensions a place to grow."
   url "http://saturnflyer.com/"
   
   define_routes do |map|
@@ -27,7 +27,7 @@ class DashboardExtension < Radiant::Extension
   def load_default_dashboard_regions
     returning OpenStruct.new do |dashboard|
       dashboard.index = Radiant::AdminUI::RegionSet.new do |index|
-        index.main.concat %w{header draft_pages reviewed_pages updated_pages updated_snippets}
+        index.main.concat %w{header draft_pages reviewed_pages updated_pages updated_snippets updated_layouts}
         index.extensions.concat %w{}
       end
     end
