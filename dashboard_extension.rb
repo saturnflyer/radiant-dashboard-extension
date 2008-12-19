@@ -7,7 +7,7 @@ class DashboardExtension < Radiant::Extension
   url "http://saturnflyer.com/"
   
   define_routes do |map|
-    map.connect 'admin/dashboard/:action', :controller => 'admin/dashboard'
+    map.dashboard 'admin/dashboard/:action', :controller => 'admin/dashboard'
   end
   
   def activate
