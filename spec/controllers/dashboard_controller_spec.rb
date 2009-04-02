@@ -6,27 +6,7 @@ describe Admin::DashboardController do
   before(:each) do
     @date_time = DateTime.strptime("12 October 2008", "%d %B %Y")
     Time.stub!(:now).and_return(@date_time.to_time)
-    @updated_pages = pages(:recent).children.find(
-              :all,
-              :limit=>10, 
-              :conditions=>["updated_at > :updated_at", 
-                {:updated_at => Time.now - 7.days}], 
-              :order => 'updated_at DESC')
-    Page.should_receive(:find).with(
-      :all, {
-        :limit=>10, 
-        :conditions=>["updated_at > :updated_at", 
-          {:updated_at => Time.now - 7.days}], 
-        :order => 'updated_at DESC'}).and_return(@updated_pages)
-    @snip1 = mock_model(Snippet, :updated_at => @date_time)
-    @updated_snippets = [@snip1]
-    Snippet.should_receive(:find).with(
-      :all, {
-        :limit=>10, 
-        :conditions=>["updated_at > :updated_at", 
-          {:updated_at => Time.now - 7.days}], 
-        :order => 'updated_at DESC'}).and_return(@updated_snippets)
-    
+    assigns[:updated_pages] = Page.recently_updated
     login_as :admin
   end
   
@@ -35,7 +15,7 @@ describe Admin::DashboardController do
       get 'index'
     end
     it "should collect updated_pages" do
-      assigns[:updated_pages].should == @updated_pages
+      assigns[:updated_pages].should == Page.recently_updated.find(:all, :limit => 10)
     end
     it "should find pages no earlier than 7 days ago" do
       assigns[:updated_pages].each do |page|
@@ -46,7 +26,7 @@ describe Admin::DashboardController do
       assigns[:updated_pages].size.should <= 10
     end
     it "should collect updated_snippets" do
-      assigns[:updated_snippets].should == @updated_snippets
+      assigns[:updated_snippets].should == Snippet.recently_updated
     end
   end
 end

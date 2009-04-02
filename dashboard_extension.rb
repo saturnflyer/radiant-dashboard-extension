@@ -16,6 +16,18 @@ class DashboardExtension < Radiant::Extension
       attr_accessor :dashboard
     end
     admin.dashboard = load_default_dashboard_regions
+    User.class_eval {
+      has_many :created_pages, :foreign_key => :created_by_id, :class_name => 'Page' unless self.respond_to?(:created_pages)
+      has_many :updated_pages, :foreign_key => :updated_by_id, :class_name => 'Page' unless self.respond_to?(:updated_pages)
+      has_many :pages, :foreign_key => :created_by_id unless self.respond_to?(:pages)
+    }
+    Page.class_eval {
+      named_scope :drafts, :conditions => ['status_id = ?',Status['Draft'].id]
+      named_scope :recently_updated, lambda{{:conditions => ['updated_at > ?', 1.week.ago ]}}
+      named_scope :reviewed, lambda{{:conditions => ["status_id = ?", Status['Reviewed'].id ]}}
+    }
+    Snippet.class_eval { named_scope :recently_updated, lambda{{:conditions => ['updated_at > ?', 1.week.ago ]}} }
+    Layout.class_eval { named_scope :recently_updated, lambda{{:conditions => ['updated_at > ?', 1.week.ago ]}} }
   end
   
   def deactivate
@@ -27,7 +39,9 @@ class DashboardExtension < Radiant::Extension
   def load_default_dashboard_regions
     returning OpenStruct.new do |dashboard|
       dashboard.index = Radiant::AdminUI::RegionSet.new do |index|
-        index.main.concat %w{header draft_pages reviewed_pages updated_pages updated_snippets updated_layouts}
+        index.main.concat %w{header current_user_draft_pages current_user_updated_pages draft_pages reviewed_pages updated_pages updated_snippets updated_layouts}
+        index.current_user_draft_pages_bottom.concat %w{}
+        index.current_user_updated_pages_bottom.concat %w{}
         index.extensions.concat %w{}
       end
     end

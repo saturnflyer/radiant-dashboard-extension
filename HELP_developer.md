@@ -6,6 +6,17 @@ the Radiant interface.
 
 ## For Extension Developers
 
+First, be sure to load Dashboard first if you are adding regions to the view.
+Set up your `config/environment.rb` like
+
+    config.extensions = [:dashboard, :all]
+    
+Because extensions are loaded alphabetically (the order of their names in `vendor/extensions`)
+An extension such as the [Blog](http://ext.radiantcms.org/extensions/30-blog) extension may
+add a region but due to the alphabetical loading (blog comes before dashboard) the Dashboard
+regions have not yet been initialized, and the Blog regions will not appear. To avoid this, 
+setup your extensions to load in the proper order.
+
 ### Dashboard Regions
 
 If you would like to provide some information about your extension to users
