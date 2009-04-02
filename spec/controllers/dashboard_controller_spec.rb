@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Admin::DashboardController do
-  scenario :users, :dashboard, :snippets
+  dataset :users, :dashboard, :snippets
   
   before(:each) do
     @date_time = DateTime.strptime("12 October 2008", "%d %B %Y")

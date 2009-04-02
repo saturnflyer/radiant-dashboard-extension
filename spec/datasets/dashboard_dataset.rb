@@ -1,4 +1,4 @@
-class DashboardScenario < Scenario::Base
+class DashboardDataset < Dataset::Base
   uses :home_page, :users
   
   def load

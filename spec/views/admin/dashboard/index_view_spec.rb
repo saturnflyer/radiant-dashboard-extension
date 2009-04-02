@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../../spec_helper'
 
 describe "/admin/dashboard/index" do
-  scenario :dashboard
+  dataset :dashboard
   before do
     @stylesheets = []
     @updated_pages = pages(:recent).children
