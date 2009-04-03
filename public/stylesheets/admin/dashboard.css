@@ -25,6 +25,7 @@
 			padding: 5px;
 			border-bottom: 1px solid #ddd;
 		}
+		.dashboard_module li:hover { background: #ffc; }
 		.dashboard_module ul li.alternate {
 			color: #666;
 		}
@@ -41,3 +42,5 @@
 			color: #999;
 			font-size: 0.8em;
 		}
+		.dashboard_module a.addition { color: #393; }
+		.dashboard_module a.subtraction { color: #933; }

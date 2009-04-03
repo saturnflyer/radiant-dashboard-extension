@@ -5,6 +5,7 @@
     - unless @current_user_draft_pages.blank?
       #current_user_draft_pages.dashboard_module
         %h2 Your Draft Pages
+        = render_region :current_user_draft_pages_top
         %ul
           - @current_user_draft_pages.each do |page|
             %li
@@ -13,18 +14,22 @@
                 = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
                 = link_to "Edit", edit_admin_page_path(page)
         = render_region :current_user_draft_pages_bottom
-  - main.current_user_updated_pages do
-    - unless @current_user_updated_pages.blank?
-      #current_user_updated_pages.dashboard_module
-        %h2 Your Recently Updated Pages
+  - main.current_user_published_pages do
+    - unless @current_user_published_pages.blank?
+      #current_user_published_pages_top.dashboard_module
+        %h2 Your Recently Published Pages
+        = render_region :current_user_published_pages_top
         %ul
-          - @current_user_updated_pages.each do |page|
+          - @current_user_published_pages.each do |page|
             %li
-              %span.title= page.title
+              - if page.virtual? or !page.published?
+                %span.virtual.title= page.title
+              - else
+                %span.title= link_to page.title, page.url
               %span.details
                 = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
                 = link_to "Edit", edit_admin_page_path(page)
-        = render_region :current_user_updated_pages_bottom
+        = render_region :current_user_published_pages_bottom
   - main.draft_pages do
     - unless @draft_pages.blank?
       #draft_pages.dashboard_module
