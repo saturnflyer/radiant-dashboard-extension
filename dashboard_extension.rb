@@ -2,7 +2,7 @@
 # require_dependency 'application'
 
 class DashboardExtension < Radiant::Extension
-  version "1.1"
+  version "#{File.read(File.expand_path(File.dirname(__FILE__)) + '/VERSION')}"
   description "Dashboard provides a way to view recent activity in Radiant and gives small extensions a place to grow."
   url "http://saturnflyer.com/"
   

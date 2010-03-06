@@ -3,10 +3,11 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "radiant-dashboard-extension"
     gem.summary = %Q{Dashboard Extension for Radiant CMS}
-    gem.description = %Q{Describe your extension here}
+    gem.description = %Q{Dashboard provides a way to see recent activity in Radiant, and allows extension developers to add to the interface with Radiant regions.}
     gem.email = "jim@saturnflyer.com"
     gem.homepage = "http://github.com/saturnflyer/radiant-dashboard-extension"
     gem.authors = ["Jim Gay"]
+    gem.add_development_dependency "radiant"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
