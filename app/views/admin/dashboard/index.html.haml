@@ -1,6 +1,5 @@
 - render_region :main do |main|
-  - main.header do
-    %h1= "#{Radiant::Config['admin.title']} Dashboard"
+  - main.header
   - main.current_user_draft_pages do
     - unless @current_user_draft_pages.blank?
       #current_user_draft_pages.dashboard_module
@@ -78,7 +77,7 @@
                 = "Updated by #{updater_name_for(snippet)} #{time_ago_in_words snippet.updated_at.to_time} ago."
                 = link_to "Edit", edit_admin_snippet_path(snippet)
   - main.updated_layouts do
-    - if (developer? or admin?) and !@updated_layouts.blank?
+    - if (designer? or admin?) and !@updated_layouts.blank?
       #updated_layouts.dashboard_module
         %h2 Recently Updated Layouts
         %ul

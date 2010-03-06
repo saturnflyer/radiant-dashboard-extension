@@ -2,6 +2,9 @@ namespace :radiant do
   namespace :extensions do
     namespace :dashboard do
       
+      desc "Runs the migration and update tasks of the Dashboard extension"
+      task :install => [:environment, :migrate, :update]
+      
       desc "Runs the migration of the Dashboard extension"
       task :migrate => :environment do
         require 'radiant/extension_migrator'

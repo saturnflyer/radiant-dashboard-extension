@@ -11,7 +11,9 @@ class DashboardExtension < Radiant::Extension
   end
   
   def activate
-    admin.tabs.add "Dashboard", "/admin/dashboard", :before => "Pages", :visibility => [:all]
+    tab "Content" do
+      add_item 'Dashboard', "/admin/dashboard", :before => 'Pages'
+    end
     Radiant::AdminUI.class_eval do
       attr_accessor :dashboard
     end
@@ -35,7 +37,6 @@ class DashboardExtension < Radiant::Extension
   end
   
   def deactivate
-    # admin.tabs.remove "Dashboard"
   end
   
   private
@@ -43,7 +44,7 @@ class DashboardExtension < Radiant::Extension
   def load_default_dashboard_regions
     returning OpenStruct.new do |dashboard|
       dashboard.index = Radiant::AdminUI::RegionSet.new do |index|
-        index.main.concat %w{header current_user_draft_pages current_user_published_pages draft_pages reviewed_pages updated_pages updated_snippets updated_layouts}
+        index.main.concat %w{current_user_draft_pages current_user_published_pages draft_pages reviewed_pages updated_pages updated_snippets updated_layouts}
         index.current_user_draft_pages_top.concat %w{}
         index.current_user_draft_pages_bottom.concat %w{}
         index.current_user_published_pages_top.concat %w{}
