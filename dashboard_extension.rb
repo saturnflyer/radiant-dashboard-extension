@@ -5,8 +5,9 @@ class DashboardExtension < Radiant::Extension
   url "http://saturnflyer.com/"
   
   def activate
-    tab "Content" do
-      add_item 'Dashboard', "/admin/dashboard", :before => 'Pages'
+    admin.nav.unshift(Radiant::AdminUI::NavTab.new('Dashboard'))
+    tab "Dashboard" do
+      add_item 'Activity', "/admin/dashboard"
     end
     Radiant::AdminUI.class_eval do
       attr_accessor :dashboard
@@ -38,6 +39,7 @@ class DashboardExtension < Radiant::Extension
   def load_default_dashboard_regions
     returning OpenStruct.new do |dashboard|
       dashboard.index = Radiant::AdminUI::RegionSet.new do |index|
+        index.info.concat %w{user actions}
         index.main.concat %w{current_user_draft_pages current_user_published_pages draft_pages reviewed_pages updated_pages updated_snippets updated_layouts}
         index.current_user_draft_pages_top.concat %w{}
         index.current_user_draft_pages_bottom.concat %w{}

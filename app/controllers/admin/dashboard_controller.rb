@@ -9,5 +9,8 @@ class Admin::DashboardController < ApplicationController
     
     @updated_snippets = Snippet.recently_updated.find(:all, :limit => 10, :order => 'updated_at DESC') # default_order override
     @updated_layouts = Layout.recently_updated.find(:all, :limit => 10, :order => 'updated_at DESC') # default_order override
+
+    @user_actions ||= []
+    @user_actions << {:text => 'Edit Profile', :path => admin_preferences_path }
   end
 end
