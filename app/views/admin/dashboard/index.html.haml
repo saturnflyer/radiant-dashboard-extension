@@ -1,14 +1,14 @@
-.dashboard_column.size1of5.user_info
+.dashboard_column.size1of5
   - render_region :info do |info|
     - info.user do
-      %h1= current_user.name
-      - @user = current_user
-      = render :partial => 'admin/users/avatar'
-      %h2= current_user.email? ? current_user.email : 'no email address'
-    -info.actions do
-      %ul
-        - @user_actions.each do |link|
-          %li= link_to(link[:text], link[:path])
+      .user_info.box
+        %h1= current_user.name
+        - @user = current_user
+        = render :partial => 'admin/users/avatar'
+        %h2= current_user.email? ? current_user.email : 'no email address'
+        %ul.user_action_list
+          - @user_actions.each do |link|
+            %li= link_to(link[:text], link[:path])
 .dashboard_column.size4of5
   - render_region :main do |main|
     - main.current_user_draft_pages do
