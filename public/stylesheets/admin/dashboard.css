@@ -1,13 +1,35 @@
+.line:after,.lastUnit:after{clear:both;display:block;visibility:hidden;overflow:hidden;height:0 !important;line-height:0;font-size:xx-large;content:" x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x ";}
+.line{*zoom:1;}
+.unit{float:left;}
+.size1of1{float:none;}
+.size1of2{width:50%;}
+.size1of3{width:33.33333%;}
+.size2of3{width:66.66666%;}
+.size1of4{width:25%;}
+.size3of4{width:75%;}
+.size1of5{width:20%;}
+.size2of5{width:40%;}
+.size3of5{width:60%;}
+.size4of5{width:80%;}
+.lastUnit{display:table-cell;float:none;width:auto;*display:block;*zoom:1;_position:relative;_left:-3px;_margin-right:-3px;}
+.dashboard_column {
+  float: left;
+}
+.user_info { background: #eee; padding-bottom: 10px; border-right: 1px solid #666; }
+.user_info * { margin-left: 10px; margin-right: 10px; }
+.user_info * * { margin-left: 0; margin-right: 0; }
+
 .dashboard_module {
 	background: #efefef;
 	float: left;
-	margin: 0 20px 20px 0;
-	width: 450px;
+	margin: 0 10px 20px 10px;
+	min-width: 450px;
+	max-width: 600px;
+	width: 40%;
 }
 	.dashboard_module h2 {
 		background: #fff;
 		border-bottom: 3px solid #666;
-		color: #000;
 		font-size: 1.2em;
 		font-weight: normal;
 		margin: 0;
@@ -16,7 +38,7 @@
 	.dashboard_module p {
 		margin: 5px;
 	}
-	.dashboard_module ul, .dashboard_module ul li {
+	.dashboard_module ul, .dashboard_module ul li{
 		padding: 0;
 		margin: 0;
 		list-style: none;
