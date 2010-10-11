@@ -15,10 +15,6 @@
 .dashboard_column {
   float: left;
 }
-.user_info { background: #eee; padding-bottom: 10px; border-right: 1px solid #666; }
-.user_info * { margin-left: 10px; margin-right: 10px; }
-.user_info * * { margin-left: 0; margin-right: 0; }
-
 .dashboard_module {
 	background: #efefef;
 	float: left;
@@ -66,3 +62,7 @@
 		}
 		.dashboard_module a.addition { color: #393; }
 		.dashboard_module a.subtraction { color: #933; }
+.user_action_list { border-bottom: 1px solid #ccc; margin-top: 1em; }
+.user_action_list li {border-top: 1px solid #ccc; }
+.user_action_list a { color: #000; display: block; padding: 3px 0px 3px 3px; }
+.user_action_list a:hover, .user_action_list a:visited:hover { background: #ccc; color: #000;}
