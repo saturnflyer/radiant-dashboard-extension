@@ -1,6 +1,5 @@
 class Admin::DashboardController < ApplicationController
   def index
-    @template_name = 'index'
     @current_user_published_pages = current_user.pages.published.recently_updated.find(:all, :limit => 10)
     @current_user_draft_pages = current_user.pages.drafts.by_updated.find(:all, :limit => 10)
     
