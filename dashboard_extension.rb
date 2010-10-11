@@ -1,14 +1,8 @@
-# Uncomment this if you reference any of your controllers in activate
-# require_dependency 'application'
-
+require File.expand_path("../lib/radiant-dashboard-extension/version", __FILE__)
 class DashboardExtension < Radiant::Extension
-  version "#{File.read(File.expand_path(File.dirname(__FILE__)) + '/VERSION')}"
+  version RadiantDashboardExtension::VERSION
   description "Dashboard provides a way to view recent activity in Radiant and gives small extensions a place to grow."
   url "http://saturnflyer.com/"
-  
-  define_routes do |map|
-    map.dashboard 'admin/dashboard/:action', :controller => 'admin/dashboard'
-  end
   
   def activate
     tab "Content" do
