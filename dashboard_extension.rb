@@ -1,4 +1,5 @@
 require File.expand_path("../lib/radiant-dashboard-extension/version", __FILE__)
+require_dependency 'application_controller'
 class DashboardExtension < Radiant::Extension
   version RadiantDashboardExtension::VERSION
   description "Dashboard provides a way to view recent activity in Radiant and gives small extensions a place to grow."
@@ -28,6 +29,12 @@ class DashboardExtension < Radiant::Extension
     }
     Layout.class_eval { 
       named_scope :recently_updated, lambda{{:conditions => ['updated_at > ?', 1.week.ago ], :order => 'updated_at DESC'}}
+    }
+    Admin::WelcomeController.class_eval {
+      before_filter :go_to_dashboard, :only => [:index]
+      def go_to_dashboard
+        redirect_to dashboard_path
+      end
     }
   end
   
