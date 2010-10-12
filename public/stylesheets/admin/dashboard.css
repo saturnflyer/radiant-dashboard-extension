@@ -13,7 +13,7 @@
 .size4of5{width:80%;}
 .lastUnit{display:table-cell;float:none;width:auto;*display:block;*zoom:1;_position:relative;_left:-3px;_margin-right:-3px;}
 .dashboard_column { float: left; overflow: hidden; }
-.standard_column { position: fixed; }
+.standard_column { }
 .dashboard_module {
 	background: #efefef;
   margin: 0 10px 20px 10px;

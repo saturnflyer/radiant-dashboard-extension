@@ -1,116 +1,117 @@
-.dashboard_column.size1of5
-  &nbsp;
-  .standard_column
-    - render_region :info do |info|
-      - info.user do
-        .user_info.box
-          %h1= current_user.name
-          - @user = current_user
-          = render :partial => 'admin/users/avatar'
-          %h2= current_user.email? ? current_user.email : 'no email address'
-          .user_action_list
-            - render_region :user_action_list do |user_action_list|
-              - user_action_list.standard_links do
-                = link_to('Edit your Profile', admin_preferences_path, :class => 'update')
-                = link_to('Manage Users', admin_users_path, :class => 'update') if admin?
-.dashboard_column.size4of5.line
-  - render_region :main do |main|
-    - main.current_user_draft_pages do
-      - unless @current_user_draft_pages.blank?
-        .size1of2.unit
-          #current_user_draft_pages.dashboard_module
-            %h2 Your Draft Pages
-            = render_region :current_user_draft_pages_top
-            %ul
-              - @current_user_draft_pages.each do |page|
-                %li
-                  %span.title{:title => "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."}= page.title
-                  .modifications
-                    = link_to "Edit", edit_admin_page_path(page), :class => 'update'
-                    = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
-            = render_region :current_user_draft_pages_bottom
-    - main.current_user_published_pages do
-      - unless @current_user_published_pages.blank?
-        .size1of2.unit
-          #current_user_published_pages_top.dashboard_module
-            %h2 Your Recently Published Pages
-            = render_region :current_user_published_pages_top
-            %ul
-              - @current_user_published_pages.each do |page|
-                %li
-                  - html_title = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
-                  - if page.virtual? or !page.published?
-                    %span.virtual.title{:title => html_title}= page.title
-                  - else
-                    %span.title{:title => html_title}= link_to page.title, page.url
-                  .modifications
-                    = link_to "Edit", edit_admin_page_path(page), :class => 'update'
-                    = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
-            = render_region :current_user_published_pages_bottom
-    - main.draft_pages do
-      - unless @draft_pages.blank?
-        .size1of2.unit
-          #draft_pages.dashboard_module
-            %h2 Draft Pages
-            %ul
-              - @draft_pages.each do |page|
-                %li
-                  %span.title{:title => "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."}= page.title
-                  .modifications
-                    = link_to "Edit", edit_admin_page_path(page), :class => 'update'
-                    = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
-    - main.reviewed_pages do
-      - unless @reviewed_pages.blank?
-        .size1of2.unit
-          #reviewed_pages.dashboard_module
-            %h2 Recently Reviewed Pages
-            %ul
-              - @reviewed_pages.each do |page|
-                %li
-                  %span.title{:title => "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."}= page.title
-                  .modifications
-                    = link_to "Edit", edit_admin_page_path(page), :class => 'update'
-                    = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
-    - main.updated_pages do
-      - unless @updated_pages.blank?
-        .size1of2.unit
-          #updated_pages.dashboard_module
-            %h2 Recently Updated Pages
-            %ul
-              - @updated_pages.each do |page|
-                %li
-                  - if page.virtual? or !page.published?
-                    %span.virtual.title= page.title
-                  - else
-                    %span.title{:title => "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."}= link_to page.title, page.url
-                  .modifications
-                    = link_to "Edit", edit_admin_page_path(page), :class => 'update'
-                    = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
-    - main.updated_snippets do
-      - unless @updated_snippets.blank?
-        .size1of2.unit
-          #updated_snippets.dashboard_module
-            %h2 Recently Updated Snippets
-            %ul
-              - @updated_snippets.each do |snippet|
-                %li
-                  %span.title{:title => "Updated by #{updater_name_for(snippet)} #{time_ago_in_words snippet.updated_at.to_time} ago."}= snippet.name
-                  .modifications
-                    = link_to "Edit", edit_admin_snippet_path(snippet), :class => 'update'
-                    = link_to "Remove", remove_admin_snippet_path(snippet), :class => 'delete'
-    - main.updated_layouts do
-      - if (designer? or admin?) and !@updated_layouts.blank?
-        .size1of2.unit
-          #updated_layouts.dashboard_module
-            %h2 Recently Updated Layouts
-            %ul
-              - @updated_layouts.each do |layout|
-                %li
-                  %span.title{:title => "Updated by #{updater_name_for(layout)} #{time_ago_in_words layout.updated_at.to_time} ago."}= layout.name
-                  .modifications
-                    = link_to "Edit", edit_admin_layout_path(layout), :class => 'update'
-                    = link_to "Remove", remove_admin_layout_path(layout), :class => 'delete'
-  .line
-    = render_region :extensions
+.outset
+  .dashboard_column.size1of5
+    &nbsp;
+    .standard_column
+      - render_region :info do |info|
+        - info.user do
+          .user_info.box
+            %h1= current_user.name
+            - @user = current_user
+            = render :partial => 'admin/users/avatar'
+            %h2= current_user.email? ? current_user.email : 'no email address'
+            .user_action_list
+              - render_region :user_action_list do |user_action_list|
+                - user_action_list.standard_links do
+                  = link_to('Edit your Profile', admin_preferences_path, :class => 'update')
+                  = link_to('Manage Users', admin_users_path, :class => 'update') if admin?
+  .dashboard_column.size4of5.line
+    - render_region :main do |main|
+      - main.current_user_draft_pages do
+        - unless @current_user_draft_pages.blank?
+          .size1of2.unit
+            #current_user_draft_pages.dashboard_module
+              %h2 Your Draft Pages
+              = render_region :current_user_draft_pages_top
+              %ul
+                - @current_user_draft_pages.each do |page|
+                  %li
+                    %span.title{:title => "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."}= page.title
+                    .modifications
+                      = link_to "Edit", edit_admin_page_path(page), :class => 'update'
+                      = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
+              = render_region :current_user_draft_pages_bottom
+      - main.current_user_published_pages do
+        - unless @current_user_published_pages.blank?
+          .size1of2.unit
+            #current_user_published_pages_top.dashboard_module
+              %h2 Your Recently Published Pages
+              = render_region :current_user_published_pages_top
+              %ul
+                - @current_user_published_pages.each do |page|
+                  %li
+                    - html_title = "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."
+                    - if page.virtual? or !page.published?
+                      %span.virtual.title{:title => html_title}= page.title
+                    - else
+                      %span.title{:title => html_title}= link_to page.title, page.url
+                    .modifications
+                      = link_to "Edit", edit_admin_page_path(page), :class => 'update'
+                      = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
+              = render_region :current_user_published_pages_bottom
+      - main.draft_pages do
+        - unless @draft_pages.blank?
+          .size1of2.unit
+            #draft_pages.dashboard_module
+              %h2 Draft Pages
+              %ul
+                - @draft_pages.each do |page|
+                  %li
+                    %span.title{:title => "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."}= page.title
+                    .modifications
+                      = link_to "Edit", edit_admin_page_path(page), :class => 'update'
+                      = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
+      - main.reviewed_pages do
+        - unless @reviewed_pages.blank?
+          .size1of2.unit
+            #reviewed_pages.dashboard_module
+              %h2 Recently Reviewed Pages
+              %ul
+                - @reviewed_pages.each do |page|
+                  %li
+                    %span.title{:title => "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."}= page.title
+                    .modifications
+                      = link_to "Edit", edit_admin_page_path(page), :class => 'update'
+                      = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
+      - main.updated_pages do
+        - unless @updated_pages.blank?
+          .size1of2.unit
+            #updated_pages.dashboard_module
+              %h2 Recently Updated Pages
+              %ul
+                - @updated_pages.each do |page|
+                  %li
+                    - if page.virtual? or !page.published?
+                      %span.virtual.title= page.title
+                    - else
+                      %span.title{:title => "Updated by #{updater_name_for(page)} #{time_ago_in_words page.updated_at.to_time} ago."}= link_to page.title, page.url
+                    .modifications
+                      = link_to "Edit", edit_admin_page_path(page), :class => 'update'
+                      = link_to "Remove", remove_admin_page_path(page), :class => 'delete'
+      - main.updated_snippets do
+        - unless @updated_snippets.blank?
+          .size1of2.unit
+            #updated_snippets.dashboard_module
+              %h2 Recently Updated Snippets
+              %ul
+                - @updated_snippets.each do |snippet|
+                  %li
+                    %span.title{:title => "Updated by #{updater_name_for(snippet)} #{time_ago_in_words snippet.updated_at.to_time} ago."}= snippet.name
+                    .modifications
+                      = link_to "Edit", edit_admin_snippet_path(snippet), :class => 'update'
+                      = link_to "Remove", remove_admin_snippet_path(snippet), :class => 'delete'
+      - main.updated_layouts do
+        - if (designer? or admin?) and !@updated_layouts.blank?
+          .size1of2.unit
+            #updated_layouts.dashboard_module
+              %h2 Recently Updated Layouts
+              %ul
+                - @updated_layouts.each do |layout|
+                  %li
+                    %span.title{:title => "Updated by #{updater_name_for(layout)} #{time_ago_in_words layout.updated_at.to_time} ago."}= layout.name
+                    .modifications
+                      = link_to "Edit", edit_admin_layout_path(layout), :class => 'update'
+                      = link_to "Remove", remove_admin_layout_path(layout), :class => 'delete'
+    .line
+      = render_region :extensions
         
 - include_stylesheet 'admin/dashboard'
