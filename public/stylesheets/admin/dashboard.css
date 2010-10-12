@@ -12,16 +12,13 @@
 .size3of5{width:60%;}
 .size4of5{width:80%;}
 .lastUnit{display:table-cell;float:none;width:auto;*display:block;*zoom:1;_position:relative;_left:-3px;_margin-right:-3px;}
-.dashboard_column {
-  float: left;
-}
+.dashboard_column { float: left; overflow: hidden; }
+.standard_column { position: fixed; }
 .dashboard_module {
 	background: #efefef;
-	float: left;
-	margin: 0 10px 20px 10px;
-	min-width: 450px;
-	max-width: 600px;
-	width: 40%;
+  margin: 0 10px 20px 10px;
+  min-width: 330px;
+  max-width: 600px;
 }
 	.dashboard_module h2 {
 		background: #fff;
@@ -62,7 +59,20 @@
 		}
 		.dashboard_module a.addition { color: #393; }
 		.dashboard_module a.subtraction { color: #933; }
+		
+		.dashboard_module li .modifications { visibility: hidden; }
+		.dashboard_module li:hover .modifications { visibility: visible; }
+    .modifications a {
+    	color: #666;
+    	font-size: 0.8em;
+    	padding: 0.3em;
+    	text-decoration: none;
+    }
+    a.create:hover { background: #363; color: #fff; }
+    a.retrieve:hover { background: #cc9; color: #000; }
+    a.update:hover { background: #c63; color: #fff; }
+    a.delete:hover { background: #933; color: #fff; }
+		
 .user_action_list { border-bottom: 1px solid #ccc; margin-top: 1em; }
-.user_action_list li {border-top: 1px solid #ccc; }
-.user_action_list a { color: #000; display: block; padding: 3px 0px 3px 3px; }
-.user_action_list a:hover, .user_action_list a:visited:hover { background: #ccc; color: #000;}
+.user_action_list a { border-top: 1px solid #ccc; color: #333; display: block; padding: 3px 0px 3px 3px; text-decoration:none; }
+.user_action_list a:hover, .user_action_list a:visited:hover { background: #ddf; color: #000;}

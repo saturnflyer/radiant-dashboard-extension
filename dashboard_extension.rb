@@ -40,6 +40,7 @@ class DashboardExtension < Radiant::Extension
     returning OpenStruct.new do |dashboard|
       dashboard.index = Radiant::AdminUI::RegionSet.new do |index|
         index.info.concat %w{user}
+        index.user_action_list.concat %w{standard_links}
         index.main.concat %w{current_user_draft_pages current_user_published_pages draft_pages reviewed_pages updated_pages updated_snippets updated_layouts}
         index.current_user_draft_pages_top.concat %w{}
         index.current_user_draft_pages_bottom.concat %w{}
