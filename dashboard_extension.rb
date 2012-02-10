@@ -4,7 +4,7 @@ class DashboardExtension < Radiant::Extension
   version RadiantDashboardExtension::VERSION
   description "Dashboard provides a way to view recent activity in Radiant and gives small extensions a place to grow."
   url "http://saturnflyer.com/"
-  
+
   def activate
     admin.nav.unshift(Radiant::AdminUI::NavTab.new('☆'))
     tab "☆" do
@@ -24,10 +24,10 @@ class DashboardExtension < Radiant::Extension
       named_scope :recently_updated, lambda{{:conditions => ['updated_at > ?', 1.week.ago ], :order => 'updated_at DESC'}}
       named_scope :by_updated, :order => 'updated_at DESC'
     }
-    Snippet.class_eval { 
-      named_scope :recently_updated, lambda{{:conditions => ['updated_at > ?', 1.week.ago ], :order => 'updated_at DESC, name'}} 
+    Snippet.class_eval {
+      named_scope :recently_updated, lambda{{:conditions => ['updated_at > ?', 1.week.ago ], :order => 'updated_at DESC, name'}}
     }
-    Layout.class_eval { 
+    Layout.class_eval {
       named_scope :recently_updated, lambda{{:conditions => ['updated_at > ?', 1.week.ago ], :order => 'updated_at DESC'}}
     }
     Admin::WelcomeController.class_eval {
@@ -37,14 +37,14 @@ class DashboardExtension < Radiant::Extension
       end
     }
   end
-  
+
   def deactivate
   end
-  
+
   private
-  
+
   def load_default_dashboard_regions
-    returning OpenStruct.new do |dashboard|
+    OpenStruct.new.tap do |dashboard|
       dashboard.index = Radiant::AdminUI::RegionSet.new do |index|
         index.info.concat %w{user}
         index.user_action_list.concat %w{standard_links}
@@ -57,5 +57,5 @@ class DashboardExtension < Radiant::Extension
       end
     end
   end
-  
+
 end
