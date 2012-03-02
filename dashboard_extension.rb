@@ -6,8 +6,8 @@ class DashboardExtension < Radiant::Extension
   url "http://saturnflyer.com/"
 
   def activate
-    admin.nav.unshift(Radiant::AdminUI::NavTab.new('☆'))
-    tab "☆" do
+    admin.nav.unshift(Radiant::AdminUI::NavTab.new('&#10025;'))
+    tab "&#10025;" do
       add_item 'Activity', "/admin/dashboard"
     end
     Radiant::AdminUI.class_eval do
